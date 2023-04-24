@@ -17,7 +17,6 @@ public class ProducerController {
     }
 
     @MessageMapping("/messages")
-    @SendTo("/kafka")
     public void handleMessage(@Payload MessageRequest request) {
         kafkaTemplate.send("accentWebSocket", request.message());
     }

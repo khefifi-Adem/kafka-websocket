@@ -2,7 +2,6 @@ package com.kafka.kafkawebsocket.controller;
 
 
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
@@ -15,7 +14,7 @@ public class ConsumerController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    @KafkaListener(topics = "accentWebSocket")
+    @KafkaListener(topics = "accentWebSocket", groupId = "accent")
     public void handleMessage(String message) {
         messagingTemplate.convertAndSend("/kafka", message);
     }
